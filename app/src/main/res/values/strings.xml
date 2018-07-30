@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">About cats</string>
+    <string name="facebook_application_id" translatable="false">264405824118033</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_cats">Gatos</string>
+    <string name="tab_favorite">Favoritos</string>
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+</resources>
