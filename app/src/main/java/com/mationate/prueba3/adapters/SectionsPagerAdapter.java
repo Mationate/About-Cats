@@ -1,8 +1,11 @@
-package com.mationate.prueba3.views.tabs;
+package com.mationate.prueba3.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.mationate.prueba3.views.tabs.CardFragment;
+import com.mationate.prueba3.views.tabs.FavoriteFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -15,7 +18,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
        switch (position){
            case 0: return CardFragment.newInstance();
            case 1: return FavoriteFragment.newInstance();
-
            default: return CardFragment.newInstance();
        }
 

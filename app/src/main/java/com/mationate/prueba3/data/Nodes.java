@@ -18,4 +18,13 @@ public class Nodes {
     public DatabaseReference user (String key){
         return users().child(key);
     }
+
+    public DatabaseReference favorites (){
+        return root.child("favorites");
+    }
+
+    public DatabaseReference userFavorite (String uid){
+        return favorites().child(uid);
+    }
+
 }

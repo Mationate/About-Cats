@@ -1,8 +1,9 @@
 package com.mationate.prueba3.models;
 
+
 public class Cat {
 
-    private String photo, breed, description;
+    private String breed, description, key, photo;
 
     public Cat() {
     }
@@ -33,5 +34,13 @@ public class Cat {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

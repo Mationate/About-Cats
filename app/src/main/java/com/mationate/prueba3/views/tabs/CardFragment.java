@@ -14,14 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.mationate.prueba3.R;
 import com.mationate.prueba3.adapters.CatAdapter;
-import com.mationate.prueba3.listener.CatListener;
+import com.mationate.prueba3.adapters.CatListener;
+import com.mationate.prueba3.data.CurrentUser;
 import com.mationate.prueba3.data.Nodes;
 import com.mationate.prueba3.models.Cat;
 import com.squareup.picasso.Picasso;
@@ -29,14 +30,11 @@ import com.squareup.picasso.Picasso;
 
 public class CardFragment extends Fragment implements CatListener {
 
-    public static final String CAT = "com.mationate.prueba3.views.tabs.KEY.CAT";
-
 
     public CardFragment() {
-        // Required empty public constructor
     }
 
-    public static CardFragment newInstance (){
+    public static CardFragment newInstance() {
         return new CardFragment();
     }
 
@@ -44,7 +42,6 @@ public class CardFragment extends Fragment implements CatListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_card, container, false);
     }
 
@@ -56,31 +53,21 @@ public class CardFragment extends Fragment implements CatListener {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rv.setLayoutManager(gridLayoutManager);
         rv.setHasFixedSize(true);
-        rv.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         FirebaseRecyclerOptions<Cat> options = new FirebaseRecyclerOptions.Builder<Cat>()
-                .setQuery(new Nodes().cats(),Cat.class)
+                .setQuery(new Nodes().cats(), Cat.class)
                 .setLifecycleOwner(getActivity())
                 .build();
 
         CatAdapter adapter = new CatAdapter(options, this);
         rv.setAdapter(adapter);
 
-        /*Dialog dialog = new Dialog(MainActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_thing);
-
-
-        dialog.dismiss();
-        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        dialog.show();*/
-
-
 
     }
 
     @Override
-    public void clicked(Cat cat) {
+    public void clicked(final Cat cat) {
 
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -95,16 +82,22 @@ public class CardFragment extends Fragment implements CatListener {
         TextView descriptionDialogTv = dialog.findViewById(R.id.descriptionDialogTv);
         descriptionDialogTv.setText(cat.getDescription());
 
-        dialog.findViewById(R.id.dismissBtn).setOnClickListener(new View.OnClickListener() {
+        dialog.findViewById(R.id.dismissTv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
 
-        dialog.findViewById(R.id.favoriteBtn).setOnClickListener(new View.OnClickListener() {
+        dialog.findViewById(R.id.favoriteTv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                DatabaseReference ref = new Nodes().userFavorite(new CurrentUser().uid());
+                String key = ref.push().getKey();
+                cat.setKey(key);
+                ref.child(key).setValue(cat);
+                dialog.dismiss();
 
             }
         });

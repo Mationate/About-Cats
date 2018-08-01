@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.mationate.prueba3.R;
-import com.mationate.prueba3.listener.CatListener;
 import com.mationate.prueba3.models.Cat;
 import com.squareup.picasso.Picasso;
 
