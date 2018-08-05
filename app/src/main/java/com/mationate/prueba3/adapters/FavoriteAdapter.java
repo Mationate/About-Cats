@@ -47,7 +47,6 @@ public class FavoriteAdapter extends FirebaseRecyclerAdapter<Favorite, FavoriteA
 
     }
 
-
     public static class FavoriteHolder extends RecyclerView.ViewHolder {
 
         private TextView favoriteTitle;

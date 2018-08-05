@@ -1,8 +1,8 @@
 package com.mationate.prueba3.views.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.firebase.ui.auth.AuthUI;
 import com.mationate.prueba3.R;
@@ -51,8 +51,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         String key = new EmailProcessor().sanitizedEmail(currentUser.email());
         new Nodes().user(key).setValue(user);
         finish();
-
-
 
     }
 
