@@ -24,7 +24,7 @@ import com.mationate.prueba3.models.Favorite;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment implements FavoriteListener{
+public class FavoriteFragment extends Fragment implements FavoriteListener {
 
 
     public FavoriteFragment() {
@@ -66,6 +66,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListener{
 
     @Override
     public void delete(Favorite favorite) {
+
         new Nodes().userFavorite(new CurrentUser().uid()).child(favorite.getKey()).removeValue();
+
     }
 }

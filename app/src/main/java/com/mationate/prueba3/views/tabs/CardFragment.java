@@ -49,7 +49,7 @@ public class CardFragment extends Fragment implements CatListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView rv = view.findViewById(R.id.rv);
+        RecyclerView rv = view.findViewById(R.id.catRecyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         rv.setLayoutManager(gridLayoutManager);
         rv.setHasFixedSize(true);
@@ -62,8 +62,6 @@ public class CardFragment extends Fragment implements CatListener {
 
         CatAdapter adapter = new CatAdapter(options, this);
         rv.setAdapter(adapter);
-
-
     }
 
     @Override
@@ -98,7 +96,6 @@ public class CardFragment extends Fragment implements CatListener {
                 cat.setKey(key);
                 ref.child(key).setValue(cat);
                 dialog.dismiss();
-
             }
         });
 
